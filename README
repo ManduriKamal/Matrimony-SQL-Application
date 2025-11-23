@@ -1,0 +1,104 @@
+# Matrimony SQL Database Application
+
+This is a simple SQL-based Matrimony application built using basic SQL queries.  
+The idea of this project is to understand how user profiles, partner preferences, and match results can be stored and managed inside a database.
+
+I created this project using standard SQL commands, and it does not contain caste or religion fields.  
+It is beginner-friendly and works on any database (Oracle, MySQL, PostgreSQL, SQL Workbench, etc).
+
+## Features
+- User registration (basic details)
+- Profile details (education, job, income, height)
+- Partner preference settings
+- Search profiles
+- Find matches based on age and education
+- Save match history
+- Update and delete user information
+
+## Database Tables
+1. **USERS** — stores user personal details  
+2. **PROFILE** — stores profile-related information  
+3. **PARTNER_PREFERENCES** — stores preferred match criteria  
+4. **MATCHES** — stores match results
+
+All tables are connected using primary key and foreign key relationships.
+
+## How to Run
+1. Open SQL Workbench / Oracle SQL Developer / MySQL Workbench.  
+2. Create a database (optional).  
+3. Run the `matrimony.sql` file.  
+4. Execute the SELECT queries to test the application.
+
+## Project Purpose
+I built this project to practice SQL concepts like:
+- Creating tables  
+- Using primary and foreign keys  
+- Insert, update, delete  
+- Joins  
+- Searching and filtering data  
+- Simple matching logic  
+
+It helps in understanding how real-world applications like matrimony apps store and organize user information.
+
+## Future Improvements
+- Add authentication table  
+- Add profile photos table  
+- Create stored procedures for matching  
+- Add triggers for auto-date insertion  
+- Add filtering by income or job
+
+## ER Diagram
+
+                         +----------------+
+                         |     USERS      |
+                         +----------------+
+                         | user_id (PK)   |
+                         | full_name      |
+                         | gender         |
+                         | age            |
+                         | phone          |
+                         | email          |
+                         | city           |
+                         | state          |
+                         +--------+-------+
+                                  |
+                    1-to-1       | (FK)
+                                  |
+                         +--------v-------+
+                         |    PROFILE     |
+                         +----------------+
+                         | profile_id (PK)|
+                         | user_id  (FK)  |
+                         | education      |
+                         | occupation     |
+                         | annual_income  |
+                         | height_cm      |
+                         | marital_status |
+                         +--------+-------+
+                                  |
+                   1-to-1        | (FK)
+                                  |
+                    +-------------v----------------+
+                    |     PARTNER_PREFERENCES      |
+                    +------------------------------+
+                    | pref_id (PK)                 |
+                    | user_id (FK)                 |
+                    | min_age                      |
+                    | max_age                      |
+                    | preferred_city               |
+                    | preferred_education          |
+                    +---------------+--------------+
+                                    |
+                     1-to-many      | (FK)
+                                    |
+                     +--------------v-------------+
+                     |           MATCHES           |
+                     +-----------------------------+
+                     | match_id (PK)               |
+                     | user_id (FK)                |
+                     | matched_user (FK)           |
+                     | match_date                  |
+                     +-----------------------------+
+
+
+
